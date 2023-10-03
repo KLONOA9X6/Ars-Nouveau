@@ -6,6 +6,7 @@ import com.hollingsworth.arsnouveau.common.block.ITickable;
 import com.hollingsworth.arsnouveau.common.block.PortalBlock;
 import com.hollingsworth.arsnouveau.common.entity.EntityFollowProjectile;
 import com.hollingsworth.arsnouveau.common.items.WarpScroll;
+import com.hollingsworth.arsnouveau.common.lib.EntityTags;
 import com.hollingsworth.arsnouveau.common.network.Networking;
 import com.hollingsworth.arsnouveau.common.network.PacketWarpPosition;
 import net.minecraft.core.BlockPos;
@@ -55,6 +56,7 @@ public class PortalTile extends ModdedTile implements ITickable, ITooltipProvide
         if ((level instanceof ServerLevel serverLevel)
                 && warpPos != null
                 && dimID != null
+                && !e.getType().is(EntityTags.PORTAL_BLACKLIST)
                 && PortalTile.teleportEntityTo(e, getServerLevel(dimID, serverLevel), this.warpPos, rotationVec) != null) {
             ServerLevel serverWorld = getServerLevel(dimID, serverLevel);
             if(serverWorld == null){
